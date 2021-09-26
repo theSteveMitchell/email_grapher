@@ -16,10 +16,10 @@ This repository contains a Rails app with a React frontend. To get started, foll
 Once everything is installed, create a copy of the `.env` file and update the created file with the Postmark Server API token you have been assigned.
 
 ``` bash
-cp .env-example .env
+cp .env .env.local
 ```
 
-The `.env` file should looks something like this:
+The `.env.local` file should looks something like this:
 
 ``` bash
 POSTMARK_API_TOKEN=xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx
