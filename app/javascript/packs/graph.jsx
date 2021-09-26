@@ -36,7 +36,7 @@ const SnapshotShape = PropTypes.shape({
 
 // components
 const Inspector = ({ source, target, topics }) => (
-  <p>
+  <p data-testid="inspector-text">
     {source && target ? (
       <span>
         <strong>{source}</strong> and <strong>{target}</strong> chatted about{' '}
@@ -59,13 +59,13 @@ const App = ({ snapshot }) => {
 
   const topics = 'Cheese and Wine' // FIXME
 
-  const handleClickNode = _nodeId => {}
+  const handleClickNode = _nodeId => { }
 
-  const handleMouseOverNode = _nodeId => {}
+  const handleMouseOverNode = _nodeId => { }
 
-  const handleMouseOutNode = _nodeId => {}
+  const handleMouseOutNode = _nodeId => { }
 
-  const handleClickLink = (_source, _target) => {}
+  const handleClickLink = (_source, _target) => { }
 
   const handleMouseOverLink = (source, target) => {
     setCurrentSource(source)
@@ -120,3 +120,5 @@ document.addEventListener('DOMContentLoaded', () => {
       .appendChild(document.createElement('div'))
   )
 })
+
+export default App;
