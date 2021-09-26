@@ -4,7 +4,9 @@ import App from '../packs/graph'
 
 const TEST_SNAPSHOT = {
   nodes: [{ id: 'Peter' }, { id: 'Paul' }],
-  links: [{ source: 'Peter', target: 'Paul' }],
+  links: [
+    { source: 'Peter', target: 'Paul', topics: ['Topic 1'] },
+  ]
 }
 
 test('application loads a graph with 2 nodes and one link', () => {
@@ -22,5 +24,5 @@ test('application updates the textPrompt when hovering over link', () => {
   expect(textPrompt.textContent).toBe('Hover your cursor over a connection line');
 
   fireEvent.mouseOver(dom.container.querySelector('path.link'))
-  expect(textPrompt.textContent).toBe('Peter and Paul chatted about Cheese and Wine')
+  expect(textPrompt.textContent).toBe('Peter and Paul chatted about Topic 1')
 });

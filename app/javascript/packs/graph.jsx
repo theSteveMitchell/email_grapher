@@ -50,14 +50,17 @@ const Inspector = ({ source, target, topics }) => (
 Inspector.propTypes = {
   source: PropTypes.string,
   target: PropTypes.string,
-  topics: PropTypes.string,
+  topics: PropTypes.arrayOf(String),
 }
 
 const App = ({ snapshot }) => {
   const [currentSource, setCurrentSource] = React.useState()
   const [currentTarget, setCurrentTarget] = React.useState()
+  const [currentTopics, setCurrentTopics] = React.useState()
 
-  const topics = 'Cheese and Wine' // FIXME
+  const findTopics = (source, target) => (
+    snapshot.links.find((link) => (link.source === source && link.target === target)).topics
+  )
 
   const handleClickNode = _nodeId => { }
 
@@ -70,11 +73,13 @@ const App = ({ snapshot }) => {
   const handleMouseOverLink = (source, target) => {
     setCurrentSource(source)
     setCurrentTarget(target)
+    setCurrentTopics(findTopics(source, target))
   }
 
   const handleMouseOutLink = (_source, _target) => {
     setCurrentSource(undefined)
     setCurrentTarget(undefined)
+    setCurrentTopics(undefined)
   }
 
   return (
@@ -83,7 +88,7 @@ const App = ({ snapshot }) => {
         <Inspector
           source={currentSource}
           target={currentTarget}
-          topics={topics}
+          topics={currentTopics}
         />
       </div>
       <Graph
@@ -107,8 +112,8 @@ App.propTypes = {
 const DUMMY_SNAPSHOT = {
   nodes: [{ id: 'Harry' }, { id: 'Sally' }, { id: 'Alice' }],
   links: [
-    { source: 'Harry', target: 'Sally' },
-    { source: 'Harry', target: 'Alice' },
+    { source: 'Harry', target: 'Sally', topics: ['Bears'] },
+    { source: 'Harry', target: 'Alice', topics: ['The Office Jokes'] },
   ],
 }
 
