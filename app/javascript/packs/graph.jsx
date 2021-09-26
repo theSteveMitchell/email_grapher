@@ -35,18 +35,29 @@ const SnapshotShape = PropTypes.shape({
 })
 
 // components
-const Inspector = ({ source, target, topics }) => (
-  <p data-testid="inspector-text">
-    {source && target ? (
-      <span>
-        <strong>{source}</strong> and <strong>{target}</strong> chatted about{' '}
-        <em>{topics}</em>
-      </span>
-    ) : (
-      <em>Hover your cursor over a connection line</em>
-    )}
-  </p>
-)
+const Inspector = ({ source, target, topics }) => {
+
+  const formatedList = (items) => {
+    if (items.length > 1) {
+      return `${items.slice(0, -1).join(', ')} and ${items.slice(-1)}`
+    }
+
+    return items[0]
+  }
+
+  return (
+    <p data-testid="inspector-text">
+      {source && target ? (
+        <span>
+          <strong>{source}</strong> and <strong>{target}</strong> chatted about{' '}
+          <em>{formatedList(topics)}</em>
+        </span>
+      ) : (
+        <em>Hover your cursor over a connection line</em>
+      )}
+    </p>
+  )
+}
 Inspector.propTypes = {
   source: PropTypes.string,
   target: PropTypes.string,
@@ -112,7 +123,7 @@ App.propTypes = {
 const DUMMY_SNAPSHOT = {
   nodes: [{ id: 'Harry' }, { id: 'Sally' }, { id: 'Alice' }],
   links: [
-    { source: 'Harry', target: 'Sally', topics: ['Bears'] },
+    { source: 'Harry', target: 'Sally', topics: ['Bears', 'Beats', 'Battlestar Galactica'] },
     { source: 'Harry', target: 'Alice', topics: ['The Office Jokes'] },
   ],
 }
