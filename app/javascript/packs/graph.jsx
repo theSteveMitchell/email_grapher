@@ -49,7 +49,14 @@ const Inspector = ({ source, target, topics }) => {
     <p data-testid="inspector-text">
       {source && target ? (
         <span>
-          <strong>{source}</strong> and <strong>{target}</strong> chatted about{' '}
+          <strong>{source}</strong>
+          {' '}
+          and
+          {' '}
+          <strong>{target}</strong>
+          {' '}
+          chatted about
+          {' '}
           <em>{formatedList(topics)}</em>
         </span>
       ) : (
