@@ -24,10 +24,29 @@ class Snapshot < ApplicationRecord
   end
 
   def self.postmark_messages
-    client = Postmark::ApiClient.new(Rails.application.config.x.postmark.api_token)
+    postmark_dummy_messages
+    #client = Postmark::ApiClient.new(Rails.application.config.x.postmark.api_token)
 
     # https://github.com/wildbit/postmark-gem/blob/master/lib/postmark/api_client.rb#L107
     # APIClient#messages is only lightly documented, but this one handles batching and supports options like batch_size
-    client.messages(max_batch_size: 100)
+    #client.messages(max_batch_size: 100)
+  end
+
+  #obviously don't put this here...
+  def self.postmark_dummy_messages
+    [
+      {
+        :to=>[{'Email'=>"anything@blackhole.postmarkapp.com", 'Name'=>"Robby Wiza"}], 
+        :recipients=>["anything@blackhole.postmarkapp.com"], 
+        :from=>"\"Shayne Pouros\" <anything@blackhole.postmarkapp.com>", 
+        :subject=>"Postmark", 
+      },
+      {
+        :to=>[{'Email'=>"anything@blackhole.postmarkapp.com", 'Name'=>"Shayne Pouros"}], 
+        :recipients=>["anything@blackhole.postmarkapp.com"], 
+        :from=>"\"Robby Wiza\" <anything@blackhole.postmarkapp.com>", 
+        :subject=>"UNSUBSCRIBE"
+      }
+    ]
   end
 end
