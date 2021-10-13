@@ -48,3 +48,16 @@ $ bin/rake snapshot:take
 This Rake task doesn’t do much right now. It’s only got a few pointers to get you started!
 ```
 
+# Design and Approach
+
+Initial commit included a mostly working rails app with a react app in the frontend. The app emits javascript data to the front end using a server-rendered view. This is a *bit* oldschool, but works for this usecase. 
+
+Every react component is in the same file, which is fine, I guess.
+
+Uses D3 to render a network graph. 
+
+Interesting bits here include:
+- adding JS tests
+- commit history shows a feature addition using stubbed data in the graph initially. Follow-up commits move that back into the backend
+- ConversationMap is a pretty optimal data structure for the conversation snapshots. 
+- I added some rspec tests to show a useful pattern. If you're building something like this, add more tests (integration tests, please)
