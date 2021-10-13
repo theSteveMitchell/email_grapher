@@ -127,17 +127,9 @@ App.propTypes = {
   snapshot: SnapshotShape.isRequired,
 }
 
-const DUMMY_SNAPSHOT = {
-  nodes: [{ id: 'Harry' }, { id: 'Sally' }, { id: 'Alice' }],
-  links: [
-    { source: 'Harry', target: 'Sally', topics: ['Bears', 'Beats', 'Battlestar Galactica'] },
-    { source: 'Harry', target: 'Alice', topics: ['The Office Jokes'] },
-  ],
-}
-
 document.addEventListener('DOMContentLoaded', () => {
   ReactDOM.render(
-    <App snapshot={SNAPSHOT_DATA || DUMMY_SNAPSHOT} />,
+    <App snapshot={SNAPSHOT_DATA} />,
     document
       .getElementById('layout-wrapper')
       .appendChild(document.createElement('div'))
