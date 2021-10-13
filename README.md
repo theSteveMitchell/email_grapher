@@ -17,6 +17,7 @@ Once everything is installed, create a copy of the `.env` file and update the cr
 
 ``` bash
 cp .env .env.local
+cp .env .env.test.local
 ```
 
 The `.env.local` file should looks something like this:
